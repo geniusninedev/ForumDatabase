@@ -37,6 +37,7 @@
         <activity android:name=".LoginActivity.Login"></activity>
         <activity android:name=".LoginActivity.SignUp" />
         <activity android:name=".ForumActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="Forum"></activity>
     </application>
 

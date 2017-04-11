@@ -17,6 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.quickstart.database.models.Post;
 import com.google.firebase.quickstart.database.models.User;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,6 +76,13 @@ public class NewPostActivity extends BaseActivity {
         setEditingEnabled(false);
         Toast.makeText(this, "Posting...", Toast.LENGTH_SHORT).show();
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+        final String Time = sdf.format(c.getTime());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        final String Date = dateFormat.format(c.getTime());
+
         // [START single_value_read]
         final String userId = getUid();
         mDatabase.child("Users").child(userId).addListenerForSingleValueEvent(
@@ -92,7 +101,7 @@ public class NewPostActivity extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new post
-                            writeNewPost(userId, user.getName(), title, body);
+                            writeNewPost(userId, user.getName(), title, body,Time,Date);
                         }
 
                         // Finish this Activity, back to the stream
@@ -123,11 +132,11 @@ public class NewPostActivity extends BaseActivity {
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String username, String title, String body) {
+    private void writeNewPost(String userId, String username, String title, String body, String messageTime, String messageDate) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         String key = mDatabase.child("posts").push().getKey();
-        Post post = new Post(userId, username, title, body);
+        Post post = new Post(userId, username, title, body,messageTime,messageDate);
         Map<String, Object> postValues = post.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();

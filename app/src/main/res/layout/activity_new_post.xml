@@ -36,8 +36,10 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:src="@drawable/ic_navigation_check_24"
-        android:layout_marginTop="66dp"
+        android:gravity="center"
+
         android:layout_below="@+id/field_body"
+        android:layout_marginTop="20dp"
         android:layout_alignLeft="@+id/field_body"
         android:layout_alignStart="@+id/field_body"
         android:layout_alignRight="@+id/field_body"

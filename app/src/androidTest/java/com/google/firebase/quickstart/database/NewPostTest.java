@@ -1,3 +1,4 @@
+/*
 package com.google.firebase.quickstart.database;
 
 
@@ -116,9 +117,11 @@ public class NewPostTest {
 
     }
 
-    /**
+    */
+/**
      * Click the 'Log Out' overflow menu if it exists (which would mean we're signed in).
-     */
+     *//*
+
     private void logOutIfPossible() {
         try {
             openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
@@ -129,12 +132,15 @@ public class NewPostTest {
 
     }
 
-    /**
+    */
+/**
      * Generate a random string of digits.
-     */
+     *//*
+
     private String randomDigits() {
         Random random = new Random();
         return String.valueOf(random.nextInt(99999999));
     }
 
 }
+*/
