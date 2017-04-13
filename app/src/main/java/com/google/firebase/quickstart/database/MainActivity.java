@@ -26,6 +26,8 @@ import android.view.View;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.quickstart.database.Forum.BaseActivity;
+import com.google.firebase.quickstart.database.Forum.ForumActivity;
 import com.google.firebase.quickstart.database.LoginActivity.Login;
 
 public class  MainActivity extends BaseActivity {
@@ -52,7 +54,7 @@ public class  MainActivity extends BaseActivity {
         });
     }
 
-    ///Authentication with firebase
+   ///Authentication with firebase
     private void authenticate() {
         mAuth = FirebaseAuth.getInstance();
         firebaseAuthListner = new FirebaseAuth.AuthStateListener() {

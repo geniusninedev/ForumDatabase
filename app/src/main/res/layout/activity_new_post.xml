@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.google.firebase.quickstart.database.NewPostActivity">
+    tools:context="Forum.NewPostActivity"
+    android:orientation="vertical">
 
+    <!--<include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />-->
     <EditText
         android:id="@+id/field_title"
         android:layout_width="match_parent"
@@ -14,7 +18,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:hint="Title"
-        android:maxLines="1" />
+        android:maxLines="1"
+        />
 
     <EditText
         android:id="@+id/field_body"
@@ -34,15 +39,15 @@
         android:id="@+id/fab_submit_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:src="@drawable/ic_navigation_check_24"
-        android:gravity="center"
-
-        android:layout_below="@+id/field_body"
         android:layout_marginTop="20dp"
-        android:layout_alignLeft="@+id/field_body"
-        android:layout_alignStart="@+id/field_body"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Submit"
+        android:layout_below="@+id/field_body"
         android:layout_alignRight="@+id/field_body"
-        android:layout_alignEnd="@+id/field_body" />
+        android:layout_alignEnd="@+id/field_body"
+        android:layout_alignLeft="@+id/field_body"
+        android:layout_alignStart="@+id/field_body" /> /
+    >
 
 </RelativeLayout>

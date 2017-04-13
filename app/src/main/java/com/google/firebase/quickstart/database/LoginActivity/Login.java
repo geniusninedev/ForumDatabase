@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -80,6 +81,10 @@ public class Login extends AppCompatActivity {
         email = (EditText) findViewById(R.id.edit_text_email_id);
         password = (EditText) findViewById(R.id.edit_text_password);
 
+      /*  Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Login");*/
+
         //Resetting Password of Registered Email ID
         resetPassword = (TextView)findViewById(R.id.textViewForgetPass);
         resetPassword.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +93,6 @@ public class Login extends AppCompatActivity {
                 ResetPassword();
             }
         });
-
 
         //FaceBook Login
         startAuthentication();
@@ -184,8 +188,6 @@ public class Login extends AppCompatActivity {
 
     }
 
-
-
     //FaceBook and Google OnActivityResult
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -229,6 +231,12 @@ public class Login extends AppCompatActivity {
 
     }
 
+    //User Set For Login With Email And Password
+  /*  protected void setUpUser() {
+        user = new User();
+        user.setEmail(email.getText().toString());
+        user.setPassword(password.getText().toString());
+    }*/
 
     //Goes to SignUp Activity for registering User
     public void onSignUpClicked(View view) {
@@ -240,6 +248,7 @@ public class Login extends AppCompatActivity {
     public void onLoginClicked(View view) {
        // setUpUser();
         signIn(email.getText().toString(), password.getText().toString());
+
     }
 
     //Validation And Email Verification Of Email Password Login
@@ -285,7 +294,9 @@ public class Login extends AppCompatActivity {
                                 //---- HERE YOU SEND THE EMAIL
                               //  mUser.sendEmailVerification();
                                 Toast.makeText(Login.this,"Verify your email first...",Toast.LENGTH_LONG).show();
+                                FirebaseAuth.getInstance().signOut();
                             }
+
 
 
                         }
@@ -293,6 +304,8 @@ public class Login extends AppCompatActivity {
                         hideProgressDialog();
                     }
                 });
+
+
 
     }
 

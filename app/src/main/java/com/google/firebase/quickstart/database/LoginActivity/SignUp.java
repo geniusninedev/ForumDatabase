@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -45,15 +46,20 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mAuth = FirebaseAuth.getInstance();
+
         name = (EditText) findViewById(R.id.edit_text_username);
         phoneNumber = (EditText) findViewById(R.id.edit_text_phone_number);
         email = (EditText) findViewById(R.id.edit_text_new_email);
         password = (EditText) findViewById(R.id.edit_text_new_password);
 
-
+        mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.app_id)).child("Users");//.child(getString(R.string.email_data));
 
+     /*   Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Sign Up");*/
 
         // [START auth_state_listener]
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -140,7 +146,7 @@ public class SignUp extends AppCompatActivity {
             createNewAccount(email.getText().toString(), password.getText().toString());
             showProgressDialog();
 
-            //AlertDialogBox();
+           //AlertDialogBox();
         }
 
     }
@@ -179,9 +185,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void onAuthenticationSucess() {
-
         // Write new user
-     // saveNewUser(user.getUid(), user.getDisplayName(), user.getEmail(),user1.getPassword(),user1.getPhoneNumber());
         saveNewUser();
         sendEmailVerification();
         signOut();
@@ -190,16 +194,12 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-
-    private void saveNewUser() {
+  private void saveNewUser() {
 
         String user_id = mAuth.getCurrentUser().getUid();
         DatabaseReference current_user_db = mRef.child(user_id);
-
-       /* User user = new User(userId,name, email,password,phoneNumber);
-        mRef.child(user_id).setValue(user);*/
         current_user_db.child("name").setValue(user.getName());
-        current_user_db.child("id").setValue(user_id);
+        current_user_db.child("id").setValue(user.getId());
         current_user_db.child("Email").setValue(user.getEmail());
         current_user_db.child("Password").setValue(user.getPassword());
         current_user_db.child("Phone Number").setValue(user.getPhoneNumber());
@@ -211,19 +211,12 @@ public class SignUp extends AppCompatActivity {
         mAuth.signOut();
     }
 
-/*    private String usernameFromEmail(String email) {
-        if (email.contains("@")) {
-            return email.split("@")[0];
-        } else {
-            return email;
-        }
-    }*/
 
 
     private void sendEmailVerification() {
         // Disable button
         findViewById(R.id.btn_user_sign_up).setEnabled(false);
-        // Toast.makeText(SignUp.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(SignUp.this, "Verification email sent to " + user.getEmail(), Toast.LENGTH_SHORT).show();
         // Send verification email
         // [START send_email_verification]
         final FirebaseUser user = mAuth.getCurrentUser();

@@ -3,13 +3,11 @@ package com.google.firebase.quickstart.database.viewholder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.quickstart.database.R;
 import com.google.firebase.quickstart.database.models.Post;
 
-import java.util.List;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
 
